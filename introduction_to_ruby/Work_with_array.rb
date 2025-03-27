@@ -26,6 +26,37 @@ def search_index_first_positive_num (array)
   return -1
 end 
 
-puts(search_min([5,7,6,9]))
-puts(search_max([5,7,6,9]))
-puts(search_index_first_positive_num([-5,7,6,-9]))
+if ARGV.length < 2 then     # проверка на входные аргументы, если их меньше 2, то просим ввести метод и названия файла с клавиатуры
+  ARGV.clear
+  puts "Введи какой метод хочешь использовать (от 1 до 3): "   
+  method = gets.chomp 
+  puts "Введи файл: "   
+  file_path = gets.chomp 
+else
+  method = ARGV[0]
+  file_path = ARGV[1]
+end
+
+begin                       # блок чтения файла
+  array = File.readlines(file_path).map(&:to_i)   
+  puts (array)                                       
+rescue Errno::ENOENT                                                                    
+  puts "Ошибка, файл не найден"
+  exit                                                                                  
+end
+
+case method                                                                             
+when '1'                                                       
+  puts "Минимальный элемент: #{search_min(array)}"                                               
+when '2'
+  puts "Максимальный элемент: #{search_max(array)}"
+when '3'
+  result = search_index_first_positive_num(array)
+  if result == -1 then 
+    puts "Положительного элемента нет"
+  else
+    puts "Индекс первого положительного элемента: #{result}"
+  end
+else                                                                                    
+  puts "Ошибка, неизвестный метод"
+end
