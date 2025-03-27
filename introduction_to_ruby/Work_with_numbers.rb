@@ -19,6 +19,19 @@ def sum_prime_divisors(number)
   sum
 end
 
+# Количество нечетных цифр числа, больших 3:
+def count_odd_digits_gt_3(number)
+  count = 0
+
+  while number > 0    # перебор цифр числа
+    digit = number % 10
+    count += 1 if digit.odd? && digit > 3 #проверка цифры на условия
+    number /= 10
+  end
+  count
+end
+
 puts "Введите число: "
 number = gets.to_i                             
 puts "Сумма простых делителей числа: #{sum_prime_divisors(number)}"
+puts "Количество нечетных цифр числа, больших 3: #{count_odd_digits_gt_3(number)}"
