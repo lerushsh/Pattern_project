@@ -1,5 +1,5 @@
 class Student
-  @@next_id = 1 # Классовая переменная для хранения следующего ID
+  @@next_id = 0 # Классовая переменная для хранения следующего ID
   
   # Конструктор класса
   def initialize(last_name, first_name, patronymic)
@@ -83,3 +83,10 @@ class Student
   def git=(git)
     @git = git
   end
+
+  def get_info()
+    "ID: #{@id}, ФИО: #{@last_name} #{@first_name} #{@patronymic},\n Git: #{@git ? @git : 'нет'},\n Тел: #{@phone ? @phone : 'нет'},\n Телеграм: #{@telegram ? @telegram : 'нет'},\n Почта: #{@email ? @email : 'нет'} \n"
+
+  end
+
+end
