@@ -13,6 +13,7 @@ student2 = Student.new(
   "Мария", 
   "Сергеевна",
   telegram: "@mary_petrova",
+  phone: nil,
   email: "petrova@example.com"
 )
 
@@ -20,7 +21,7 @@ student3 = Student.new(
   "Сидоров", 
   "Алексей", 
   "Николаевич",
-  phone: "+79998765432",
+  phone: "Телефон",
   telegram: "@alex_sidorov",
   git: "https://github.com/sidorov"
 )
