@@ -1,27 +1,27 @@
 require_relative 'Student'
 
 student1 = Student.new(
-  "Мишенькина", 
-  "Валерия", 
-  "Андреевна",
+  last_name: "Мишенькина", 
+  first_name: "Валерия", 
+  patronymic: "Андреевна",
   phone: "+79575384934",
   git: "https://github.com/lerushsh"
 )
 
 student2 = Student.new(
-  "Петрова", 
-  "Мария", 
-  "Сергеевна",
+  last_name: "Петрова", 
+  first_name: "Мария", 
+  patronymic: "Сергеевна",
   telegram: "@mary_petrova",
   phone: nil,
   email: "petrova@example.com"
 )
 
 student3 = Student.new(
-  "Сидоров", 
-  "Алексей", 
-  "Николаевич",
-  phone: "Телефон",
+  last_name: "Сидоров", 
+  first_name: "Алексей", 
+  patronymic: "Николаевич",
+  phone: "+79575384934",
   telegram: "@alex_sidorov",
   git: "https://github.com/sidorov"
 )
