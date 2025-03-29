@@ -1,21 +1,33 @@
 require_relative 'Student'
 
-student1 = Student.new("Мишенькина", "Валерия", "Андреевна")
-student1.phone = "+79575384934"
-student1.git = "https://github.com/lerushsh"
+student1 = Student.new(
+  "Мишенькина", 
+  "Валерия", 
+  "Андреевна",
+  phone: "+79575384934",
+  git: "https://github.com/lerushsh"
+)
 
-student2 = Student.new("Петрова", "Мария", "Сергеевна")
-student2.telegram = "@mary_petrova"
-student2.email = "petrova@example.com"
+student2 = Student.new(
+  "Петрова", 
+  "Мария", 
+  "Сергеевна",
+  telegram: "@mary_petrova",
+  email: "petrova@example.com"
+)
 
-student3 = Student.new("Сидоров", "Алексей", "Николаевич")
-student3.phone = "+79998765432"
-student3.telegram = "@alex_sidorov"
-student3.git = "https://github.com/sidorov"
+student3 = Student.new(
+  "Сидоров", 
+  "Алексей", 
+  "Николаевич",
+  phone: "+79998765432",
+  telegram: "@alex_sidorov",
+  git: "https://github.com/sidorov"
+)
 
 # Выводим информацию о студентах
 puts "Cтуденты:"
-puts student1.get_info
-puts student2.get_info
-puts student3.get_info
+puts student1.to_s
+puts student2.to_s
+puts student3.to_s
 
