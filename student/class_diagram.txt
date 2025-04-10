@@ -1,0 +1,31 @@
+@startuml
+class Student {
+  - {static} @@next_id
+  - id
+  - last_name
+  - first_name
+  - patronymic
+  - phone
+  - email
+  - git
+  - telegram
+
+  + {static} valid_phone?(phone)
+  + {static} valid_fio?(name)
+  + {static} valid_email?(email)
+  + {static} valid_telegram?(telegram)
+  + {static} valid_git?(git)
+  
+  + initialize(last_name:, first_name:, patronymic:, phone:, email:, git:, telegram:)
+  + set_contacts(new_phone:, new_telegram:, new_email:)
+  + first_name=(new_name)
+  + last_name=(new_name)
+  + patronymic=(new_patronymic)
+  + git=(new_git)
+  + validate?()
+  + has_git?()
+  + has_contact?()
+  + to_s()
+}
+
+@enduml
