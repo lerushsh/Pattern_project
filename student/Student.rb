@@ -15,10 +15,8 @@ class Student
     self.patronymic = patronymic # Отчетсво 
     
     # Необязательные параметры:
-    self.phone = phone 
-    self.telegram = telegram
-    self.email = email
     self.git = git
+    set_contacts(new_phone: phone, new_telegram: telegram, new_email: email)
   end
 
   # Проверки на корректность
@@ -43,12 +41,27 @@ class Student
   end 
 
   # сеттеры с проверкой на корректность
-  def phone=(new_phone)
+
+  def set_contacts(new_phone: nil, new_telegram: nil, new_email: nil)
+    
     if new_phone.nil? || self.class.valid_phone?(new_phone)
       @phone = new_phone
     else
       raise ArgumentError, "Некорректный формат номера телефона"
     end
+
+    if new_email.nil? || self.class.valid_email?(new_email)
+      @email = new_email
+    else
+      raise ArgumentError, "Некорректный формат email"
+    end
+
+    if new_telegram.nil? || self.class.valid_telegram?(new_telegram)
+      @telegram = new_telegram
+    else
+      raise ArgumentError, "Некорректный формат telegram"
+    end
+
   end
 
   def first_name=(new_name)
@@ -72,22 +85,6 @@ class Student
       @patronymic = new_patronymic
     else
       raise ArgumentError, "Некорректный формат отчества"
-    end
-  end
-
-  def email=(new_email)
-    if new_email.nil? || self.class.valid_email?(new_email)
-      @email = new_email
-    else
-      raise ArgumentError, "Некорректный формат email"
-    end
-  end
-
-  def telegram=(new_telegram)
-    if new_telegram.nil? || self.class.valid_telegram?(new_telegram)
-      @telegram = new_telegram
-    else
-      raise ArgumentError, "Некорректный формат telegram"
     end
   end
 
