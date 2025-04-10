@@ -99,6 +99,19 @@ class Student
     end
   end
 
+  # проверка на наличие гита и контакта
+  def validate? ()
+    has_contact?() && has_git?()
+  end
+
+  def has_git? ()
+    !(self.git == nil)
+  end
+
+  def has_contact? ()
+    !(self.phone == nil && self.telegram == nil && self.email == nil)
+  end
+
   def to_s()
     "ID: #{@id}, ФИО: #{@last_name} #{@first_name} #{@patronymic},\n Git: #{@git ? @git : 'нет'},\n Тел: #{@phone ? @phone : 'нет'},\n Телеграм: #{@telegram ? @telegram : 'нет'},\n Почта: #{@email ? @email : 'нет'} \n"
   end

@@ -4,7 +4,6 @@ student1 = Student.new(
   last_name: "Мишенькина", 
   first_name: "Валерия", 
   patronymic: "Андреевна",
-  phone: "+79575384934",
   git: "https://github.com/lerushsh"
 )
 
@@ -31,4 +30,8 @@ puts "Cтуденты:"
 puts student1.to_s
 puts student2.to_s
 puts student3.to_s
+
+puts student1.validate?
+puts student2.validate?
+puts student3.validate?
 
