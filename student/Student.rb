@@ -133,4 +133,28 @@ class Student
     "ID: #{@id}, ФИО: #{@last_name} #{@first_name} #{@patronymic},\n Git: #{@git ? @git : 'нет'},\n Тел: #{@phone ? @phone : 'нет'},\n Телеграм: #{@telegram ? @telegram : 'нет'},\n Почта: #{@email ? @email : 'нет'} \n"
   end
 
+  def getInfo()
+    "#{fio_info}, #{git_info}, #{contact_info}"
+  end
+
+  def fio_info()
+    "#{@last_name} #{@first_name[0]}.#{@patronymic[0]}."
+  end
+
+  def git_info()
+    has_git? ? "Git: #{git}" : "Git: нет"
+  end
+
+  def contact_info()
+    if self.phone
+      "Телефон: #{@phone}"
+    elsif self.telegram
+      "Телеграм: #{@telegram}"
+    elsif self.email
+      "Email: #{@email}"
+    else
+      "Нет контакта"
+    end
+  end
+
 end

@@ -27,13 +27,13 @@ student3 = Student.new(
 
 # Выводим информацию о студентах
 puts "Cтуденты:"
-puts student1.to_s
-puts student2.to_s
-puts student3.to_s
+puts student1.getInfo
+puts student2.getInfo
+puts student3.getInfo
 
 puts student1.validate?
 puts student2.validate?
 puts student3.validate?
 
-student4 = Student.create_from_string("Имя: Леша, Фамилия: Сидородов, Отчество: Андреевич, гит: https://github.com/sidorov, телефон: 5657")
+student4 = Student.create_from_string("Имя: Леша, Фамилия: Сидородов, Отчество: Андреевич, гит: https://github.com/sidorov")
 puts student4.to_s
