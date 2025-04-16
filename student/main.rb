@@ -35,3 +35,5 @@ puts student1.validate?
 puts student2.validate?
 puts student3.validate?
 
+student4 = Student.create_from_string("Имя: Леша, Фамилия: Сидородов, Отчество: Андреевич, гит: https://github.com/sidorov, телефон: 5657")
+puts student4.to_s

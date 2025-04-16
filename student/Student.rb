@@ -19,6 +19,26 @@ class Student
     set_contacts(new_phone: phone, new_telegram: telegram, new_email: email)
   end
 
+  #конструктор через строку вида: "Имя: Значение, Фамилия: Значение"
+  def self.create_from_string(string)
+    attributes = {}
+
+    string.split(', ').each do |pair|
+      key, value = pair.split(': ')
+      attributes[key.downcase] = value
+    end
+
+    new(
+      last_name: attributes['фамилия'],
+      first_name: attributes['имя'],
+      patronymic: attributes['отчество'],
+      phone: attributes['телефон'],
+      telegram: attributes['телеграм'],
+      email: attributes['почта'],
+      git: attributes['гит']
+    )
+  end
+
   # Проверки на корректность
   def self.valid_phone?(phone)
     phone.match?(/\A(\+\d{1,3}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\z/)
