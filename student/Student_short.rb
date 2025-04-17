@@ -1,6 +1,7 @@
-class Student_short
+require_relative 'Super_student'
+class Student_short < Super_student
 
-  attr_reader :id, :fio, :git, :contact 
+  attr_reader :fio, :contact 
 
   # Конструктор класса из объекта Student
   def self.initialize_from_student(student)
@@ -30,9 +31,8 @@ class Student_short
   private_class_method :new
 
   def initialize(id:, fio:, git:, contact:)
-    @id = id
+    super(id: id.to_s.strip, git: git)
     @fio = fio
-    @git = git
     @contact = contact
   end
 

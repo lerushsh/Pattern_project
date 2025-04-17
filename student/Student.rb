@@ -1,13 +1,11 @@
-class Student
-  @@next_id = 0 # Классовая переменная для хранения следующего ID
-  
+require_relative 'Super_student'
+class Student < Super_student
+
   attr_reader :id, :last_name, :first_name, :patronymic, :telegram, :email, :git, :phone 
 
   # Конструктор класса
-  def initialize(last_name:, first_name:, patronymic:, phone: nil, email: nil, git: nil, telegram: nil)
-    # Задаем ID автоматически
-    @id = @@next_id + 1
-    @@next_id += 1 # Для следующего id добавляем +1
+  def initialize(id:, last_name:, first_name:, patronymic:, phone: nil, email: nil, git: nil, telegram: nil)
+    super(id: id.to_s.strip, git: git)
 
     # Задаем ФИО (обязательные параметры)
     self.last_name = last_name # Фамилия 
@@ -15,7 +13,6 @@ class Student
     self.patronymic = patronymic # Отчетсво 
     
     # Необязательные параметры:
-    self.git = git
     set_contacts(new_phone: phone, new_telegram: telegram, new_email: email)
   end
 
@@ -29,6 +26,7 @@ class Student
     end
 
     new(
+      id: attributes['id'],
       last_name: attributes['фамилия'],
       first_name: attributes['имя'],
       patronymic: attributes['отчество'],
@@ -55,10 +53,6 @@ class Student
   def self.valid_telegram?(telegram)
     telegram.match?(/\A@[a-zA-Z0-9_]+\z/)
   end
-
-  def self.valid_git?(git)
-    git.match?(/\Ahttps:\/\/github\.com\/[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+(?:\.git)?)?\z/)
-  end 
 
   # сеттеры с проверкой на корректность
 
@@ -108,21 +102,9 @@ class Student
     end
   end
 
-  def git=(new_git)
-    if new_git.nil? || self.class.valid_git?(new_git)
-      @git = new_git
-    else
-      raise ArgumentError, "Некорректный формат git"
-    end
-  end
-
   # проверка на наличие гита и контакта
   def validate? ()
     has_contact?() && has_git?()
-  end
-
-  def has_git? ()
-    !(self.git == nil)
   end
 
   def has_contact? ()
@@ -130,7 +112,7 @@ class Student
   end
 
   def to_s()
-    "ID: #{@id}, ФИО: #{@last_name} #{@first_name} #{@patronymic},\n Git: #{@git ? @git : 'нет'},\n Тел: #{@phone ? @phone : 'нет'},\n Телеграм: #{@telegram ? @telegram : 'нет'},\n Почта: #{@email ? @email : 'нет'} \n"
+    "ID: #{@id}, ФИО: #{@last_name} #{@first_name} #{@patronymic},\n #{git_info},\n Тел: #{@phone ? @phone : 'нет'},\n Телеграм: #{@telegram ? @telegram : 'нет'},\n Почта: #{@email ? @email : 'нет'} \n"
   end
 
   def getInfo()
@@ -139,10 +121,6 @@ class Student
 
   def fio_info()
     "#{@last_name} #{@first_name[0]}.#{@patronymic[0]}."
-  end
-
-  def git_info()
-    has_git? ? "Git: #{git}" : "Git: нет"
   end
 
   def contact_info()
