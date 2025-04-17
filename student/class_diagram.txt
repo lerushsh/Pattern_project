@@ -1,31 +1,56 @@
 @startuml
-class Student {
-  - {static} @@next_id
-  - id
-  - last_name
-  - first_name
-  - patronymic
-  - phone
-  - email
-  - git
-  - telegram
 
-  + {static} valid_phone?(phone)
-  + {static} valid_fio?(name)
-  + {static} valid_email?(email)
-  + {static} valid_telegram?(telegram)
-  + {static} valid_git?(git)
+class Super_student {
+  # id : String
+  # git : String
   
-  + initialize(last_name:, first_name:, patronymic:, phone:, email:, git:, telegram:)
-  + set_contacts(new_phone:, new_telegram:, new_email:)
-  + first_name=(new_name)
-  + last_name=(new_name)
-  + patronymic=(new_patronymic)
-  + git=(new_git)
-  + validate?()
-  + has_git?()
-  + has_contact?()
-  + to_s()
+  + {static} valid_git?(git) : Boolean
+  + {static} valid_id?(id) : Boolean
+  + initialize(id:, git: nil)
+  + git=(new_git) : void
+  + id=(new_id) : void
+  + has_git?() : Boolean
+  + git_info() : String
 }
+
+class Student {
+  - last_name : String
+  - first_name : String
+  - patronymic : String
+  - phone : String
+  - email : String
+  - telegram : String
+  
+  + {static} valid_phone?(phone) : Boolean
+  + {static} valid_fio?(name) : Boolean
+  + {static} valid_email?(email) : Boolean
+  + {static} valid_telegram?(telegram) : Boolean
+  + initialize(id:, last_name:, first_name:, patronymic:, phone: nil, email: nil, git: nil, telegram: nil)
+  + {static} create_from_string(string) : Student
+  + set_contacts(new_phone:, new_telegram:, new_email:) : void
+  + first_name=(new_name) : void
+  + last_name=(new_name) : void
+  + patronymic=(new_patronymic) : void
+  + validate?() : Boolean
+  + has_contact?() : Boolean
+  + to_s() : String
+  + getInfo() : String
+  + fio_info() : String
+  + contact_info() : String
+}
+
+class Student_short {
+  - fio : String
+  - contact : String
+  
+  + {static} initialize_from_student(student) : Student_short
+  + {static} initialize_from_string(id, info_string) : Student_short
+  + to_s() : String
+  - initialize(id:, fio:, git:, contact:) : void
+}
+
+Super_student <|-- Student
+Super_student <|-- Student_short
+
 
 @enduml
